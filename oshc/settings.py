@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,11 +80,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+MEDIA_URL = '/media/'
+STATIC_ROOT = 'staticfiles'
+
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS =  (
-		    ('assets', '/home/kt/oshc/static'),
-			    #always put absolute path and forward slashes
-			)
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'../static'),)
+#STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR), "static"),)
+TEMPLATE_DIRS = ( os.path.join(BASE_DIR, '../templates'),)
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+STATIC_ROOT = 'staticfiles'
+
+STATICFILES_FINDERS = (                                                              
+    'django.contrib.staticfiles.finders.FileSystemFinder',                           
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',                       
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',                      
+)                                                                                    
+                                                                                     
+                                                                                     
+TEMPLATE_LOADERS = (                                                                 
+    'django.template.loaders.filesystem.Loader',                                     
+    'django.template.loaders.app_directories.Loader',                                
+#     'django.template.loaders.eggs.Loader',                                         
+)
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
