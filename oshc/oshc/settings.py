@@ -83,7 +83,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS =  (
-		    ('assets', '/home/kt/oshc/static'),
+		    ('assets', '/home/melrick/projects/OpenSourceHelpCommunity.github.io/oshc/static'),
 			    #always put absolute path and forward slashes
 			)
 

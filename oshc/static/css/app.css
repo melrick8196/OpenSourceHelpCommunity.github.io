@@ -7,6 +7,10 @@ body {
   height: 180px;
 }
 
+.navbar ul {
+    margin-top: 5px;
+}
+
 .navbar .navbar-brand {
   color: #ED1B49;
   font-size: 175%;
